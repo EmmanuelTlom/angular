@@ -1,0 +1,63 @@
+@import "styles/variables";
+@import "styles/mixins";
+@import "~animate.css/animate.min";
+@import "~@angular/material/theming";
+@import "~angular-mgl-timeline/theme";
+@import url("https://use.typekit.net/jnq3uxd.css");
+@include mat-core();
+
+$candy-app-primary: mat-palette($mat-blue, 800);
+$candy-app-accent: mat-palette($mat-orange, A200, A100, A400);
+$candy-app-warn: mat-palette($mat-red);
+$candy-app-theme: mat-light-theme(
+  $candy-app-primary,
+  $candy-app-accent,
+  $candy-app-warn
+);
+
+@include angular-material-theme($candy-app-theme);
+@include mgl-timeline-theme($candy-app-theme);
+html,
+body {
+  height: 100%;
+  &::-webkit-scrollbar {
+    width: 3px;
+    background: rgb(226, 225, 225);
+  }
+}
+body {
+  margin: 0;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+.mat-raised-button {
+  margin: 0 0.55rem !important;
+}
+
+.cell-style {
+  width: 100% !important;
+  padding: 0.45rem 1rem !important;
+  margin: 0 0.35rem !important;
+}
+.test-name-table {
+  overflow-x: scroll;
+}
+
+.test-name-table .ng-star-inserted {
+  width: 90%;
+  margin: 0 auto;
+  // overflow-x: scroll;
+}
+
+.pad {
+  padding: 0 1rem !important;
+}
+
+.mat-form-field-outline {
+  width: 100%;
+}

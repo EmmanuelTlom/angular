@@ -1,0 +1,26 @@
+<div class="login">
+  <form [formGroup]="formData" novalidate (ngSubmit)="onSubmit()" autocomplete="off" autofill="off">
+    <div class="imgcontainer">
+      <img src="./assets/images/ISG-LOGO-BLUE.png" alt="Avatar" class="avatar" >
+      <h1 class="infinity-sales-group" style="font-size: 2vw;">INFINITY SALES GROUP</h1>
+    </div>
+
+    <div class="container">
+
+      <mat-form-field appearance="outline" style="width: 400px;">
+        <mat-label>Username</mat-label>
+        <input matInput  formControlName="user" >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 400px;">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput  formControlName="password">
+      </mat-form-field>
+
+      <button class="login-button" type="button" (click)="onSubmit()" mat-raised-button
+        [ngClass]="(formData.invalid) ? 'disabled' : ''" [disabled]="formData.invalid" style="width: 400px;">
+        Login
+      </button>
+    </div>
+  </form>
+</div>

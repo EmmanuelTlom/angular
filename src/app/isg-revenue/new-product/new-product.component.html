@@ -1,0 +1,218 @@
+<div class="warpper">
+  <div class="imgcontainer">
+    <mat-icon style="font-size: 40px;color: #808080; animation: fadeIn 0.8s ease-in-out 0.1s backwards;">
+      note_add</mat-icon>
+  </div>
+  <h2 style="text-align: center;color: #808080;">Create New Product</h2>
+
+  <br>
+  <div class="flex-row">
+    <div>
+      <div style="display: flex;gap: 0px;flex-direction: column;">
+        <div style="display:flex;gap: 30px;justify-content: center;">
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Choose Partner</mat-label>
+            <mat-select [(ngModel)]="formData.partner" (selectionChange)="setPartnerSelection()">
+              <mat-option *ngFor="let partner of PARTNERS" [value]="partner">
+                {{partner.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-con" style="display:flex;gap: 30px;justify-content: center;">
+
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Class Type</mat-label>
+            <mat-select [(ngModel)]="class" (selectionChange)="setClassTypeSelection()">
+              <mat-option *ngFor="let class of CLASS_TYPE" [value]="class">
+                {{class.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- 🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰 -->
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Features</mat-label>
+            <mat-select multiple #featureDrop [(ngModel)]="feature" (selectionChange)="setFeaturesSelection()">
+              <button style="float:right;position: sticky;top: 0px;z-index: 999999999;" type="button" mat-icon-button
+                (click)="closeMatSelect('featureDrop')">
+                <mat-icon>clear</mat-icon>
+              </button>
+              <mat-option *ngFor="let feature of FEATURES" [value]="feature">
+                {{feature.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- 🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰 -->
+          <mat-form-field class="wid" *ngIf="displayApplyToClass" appearance="outline">
+            <mat-label>Apply To Class</mat-label>
+            <mat-select multiple #apply [(ngModel)]="applyToclass" (selectionChange)="setApplyToClass()">
+              <button style="float:right;position: sticky;top: 0px;z-index: 999999999;" type="button" mat-icon-button
+                (click)="closeMatSelect('apply')">
+                <mat-icon>clear</mat-icon>
+              </button>
+              <mat-option *ngFor="let apply of APPLY_PRIMARY_LIST" [value]="apply">
+                {{apply.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- 🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰 -->
+        </div>
+        <div class="form-con" style="display:flex;gap: 30px;justify-content: center;">
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput required [(ngModel)]="formData.name">
+          </mat-form-field>
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Behavior</mat-label>
+            <mat-select required [(ngModel)]="formData.behavior" (selectionChange)="setPartnerSelection()">
+              <mat-option *ngFor="let behavior of BEHAVIORS" [value]="behavior">
+                {{behavior.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Revenue</mat-label>
+            <input required matInput type="number" min="0" [(ngModel)]="formData.revenue">
+          </mat-form-field>
+        </div>
+        <div class="mobilee" style="display:flex;justify-content: center;">
+          <!-- 🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰 -->
+          <div class="mobileclass" style="display: flex;justify-content: flex-start; position: relative;
+        left: 12px;">
+            <mat-form-field class="wid" appearance="outline" style="width: 200px;">
+              <mat-label>Start Date</mat-label>
+              <input matInput [min]="MinDate" [matDatepicker]="startDatePicker" placeholder="select a date" type="date"
+                [(ngModel)]="formData.startDate" (dateChange)="onDateSelect($event)" required
+                [min]="today | date: 'yyyy-MM-dd'">
+              <mat-error *ngIf="true">
+                A valid date is required!
+              </mat-error>
+              <!-- <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle> -->
+              <mat-datepicker (closed)="_openCalendar(startDatePicker, 'picker')" [opened]="false" #startDatePicker
+                color="primary" style="color: tomato;"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <!-- 🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰 -->
+          <!-- 🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰 -->
+          <div class="mobileclass" style="display: flex;justify-content: flex-start;position: relative;
+          left: 12px;">
+            <mat-form-field class="wid" appearance="outline" style="width: 200px;">
+              <mat-label>End Date</mat-label>
+              <input matInput [min]="MinDate" [matDatepicker]="endDateTimePicker" placeholder="select a date"
+                [(ngModel)]="formData.endDate" (dateChange)="onDateSelect($event)" required
+                [min]="today | date: 'yyyy-MM-dd'">
+              <mat-error *ngIf="true">
+                A valid date is required!
+              </mat-error>
+              <mat-datepicker-toggle matSuffix [for]="endDateTimePicker"></mat-datepicker-toggle>
+              <mat-datepicker (closed)="_openCalendar(endDateTimePicker, 'picker')" [opened]="false" #endDateTimePicker
+                color="primary" style="color: tomato; width: fit-content;"></mat-datepicker>
+            </mat-form-field>
+            <mat-icon (click)="setEndOfTheWorldDate()" [matTooltip]="'add 9999-12-31 '" matTooltipPosition="right"
+              style="font-size: 20px;color: #777777;animation: fadeIn 0.6s ease-in-out 0.3s backwards;position: relative;top: 20px;left: -20px;cursor:cell;">
+              fact_check</mat-icon>
+          </div>
+          <!-- 🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰🎰 -->
+          <div class="mobileclass" style="display: flex;justify-content: flex-start;position: relative;
+          left: -12px;">
+            <mat-form-field class="wid" appearance="outline">
+              <mat-label>Promo Priority</mat-label>
+              <input [(ngModel)]="formData.priority" matInput>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-con" style="display:flex;gap: 30px;justify-content: center;">
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Min Qty</mat-label>
+            <input [(ngModel)]="formData.minQty" matInput>
+          </mat-form-field>
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Max Qty</mat-label>
+            <input [(ngModel)]="formData.maxQty" matInput>
+          </mat-form-field>
+          <mat-form-field class="wid" appearance="outline">
+            <mat-label>Up to Qty</mat-label>
+            <input [(ngModel)]="formData.upToQty" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- CANCEL AND CREATE PRODUCT BUTTONS -->
+      <div class="flex-column">
+        <mat-form-field [style.fontSize]="'16px'" style="width: 100%;" appearance="outline">
+          <mat-label>Comments</mat-label>
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
+      <!-- CANCEL AND CREATE PRODUCT BUTTONS -->
+      <div class="">
+        <div class="buttons-home-page flex-conn">
+          <button class="button fle" mat-raised-button (click)="goBack()"
+            style="color: #032c72;background: white;box-shadow: 0 1px 8px 0 rgb(0 0 0 / 40%);">
+            <mat-icon style="color: #032c72; animation: fadeIn 0.2s ease-in-out 0.3s backwards;">
+              arrow_back
+            </mat-icon> <span class="lef">cancel</span>
+          </button>
+          <button class="button" (click)="createProduct()" [ngClass]="(true)?'active':'no-active'"
+            mat-raised-button>create Product</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- FEATURES LIST -->
+    <div *ngIf="SELECTED_FEATURES.length>0" class="features-list-box">
+      <p style="font-size: larger;text-align: center;">Features</p>
+      <div style="display: flex;">
+        <input type="text" [(ngModel)]="newFeatureManual" placeholder="Enter Features Manually" style="font-size: 12px;color: #324395;width: 100%;">
+        <mat-icon (click)="addManulFeature()" style="cursor: pointer;font-size: 33px;color: #324395;position: absolute;top: 47px;right: 16px;">
+          add_box</mat-icon>
+      </div>
+      <div class="">
+        <div class="timePickerclass">
+          <div *ngFor="let feature of SELECTED_FEATURES; let i = index; "
+            style="display: flex;flex-direction: column;align-items: center; ">
+            <button *ngIf="i !== selectTimeConfirmIndex" [disabled]="(FEATURES.length > 1)?false:true" mat-raised-button
+              (click)="selectTimeConfirmIndex = i" style="width: 310px;margin: 5px 0px;color: black;">{{feature.name}}
+            </button>
+            <div *ngIf="i === selectTimeConfirmIndex && FEATURES.length > 1"
+              style="display: flex;flex-direction: row;justify-content: space-around; gap: 20px;"
+              (click)="selectTimeConfirmIndex = -1">
+              <button mat-raised-button style="margin: 10px 2px;color: white;"
+                style="background-color: grey;">Cancel</button>
+              <button mat-raised-button (click)="deleteFeatureFromList(i); selectTimeConfirmIndex = -1"
+                style="margin: 10px 2px;color: white;" style="background-color: #032c72;">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLY TO CLASS -->
+    <div *ngIf="SELECTED_APPLY_TO_CLASS.length>0" class="features-list-box">
+      <p style="font-size: larger;text-align: center;text-decoration: underline;">Apply To Class</p>
+      <div class="">
+        <div class="timePickerclass">
+          <div *ngFor="let applyToClassItem of SELECTED_APPLY_TO_CLASS; let i = index; "
+            style="display: flex;flex-direction: column;align-items: center; ">
+            <button *ngIf="i !== selectTimeConfirmIndex" [disabled]="(SELECTED_APPLY_TO_CLASS.length > 1)?false:true"
+              mat-raised-button (click)="selectTimeConfirmIndex = i"
+              style="width: 310px;margin: 5px 0px;color: black;">{{applyToClassItem.name}}
+            </button>
+            <div *ngIf="i === selectTimeConfirmIndex && SELECTED_APPLY_TO_CLASS.length > 1"
+              style="display: flex;flex-direction: row;justify-content: space-around; gap: 20px;"
+              (click)="selectTimeConfirmIndex = -1">
+              <button mat-raised-button style="margin: 10px 2px;color: white;"
+                style="background-color: grey;">Cancel</button>
+              <button mat-raised-button (click)="deleteApplyToClass(i); selectTimeConfirmIndex = -1"
+                style="margin: 10px 2px;color: white;" style="background-color: #032c72;">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

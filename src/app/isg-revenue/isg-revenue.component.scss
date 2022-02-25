@@ -1,0 +1,272 @@
+@import "../../../src/styles/mixins";
+@import "../../../src/styles/variables";
+
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+::ng-deep mgl-timeline .mgl-timeline-line {
+  background: linear-gradient(to right, #d0cece, #ececec) !important;
+}
+.tool-bar {
+  z-index: 99999999999;
+  // background: linear-gradient(
+  //   to right,
+  //   var(--brand-green),
+  //   var(--brand-dark-green)
+  // );
+  border-bottom-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+  // position: sticky;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  top: 0;
+  z-index: 1;
+  @include BoxShadow(4);
+
+  .logo {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0px;
+    animation: backInDown 1500ms ease-in 500ms forwards;
+
+    .icon-buton {
+      display: none;
+    }
+
+    .infinity-sales-group {
+      color: #032c72;
+      font-weight: bold;
+      @include text-shadow(2px, 2px, 2px, var(--brand-orange));
+    }
+    .revenue-app {
+      color: #070707;
+      text-align: center;
+      position: relative;
+      top: -10px;
+    }
+  }
+
+  .tool-bar-wrapper {
+    margin-top: 5rem !important;
+  }
+  h1 {
+    // background: linear-gradient(to right,#f30ac18f, var(--brand-orange));
+    padding: 0px 5px;
+    border-radius: 10px;
+    padding-top: 15px;
+    font-size: 50px;
+    @include text-shadow(2px, 2px, 2px, #0aa9f38f);
+    animation: rubberBand 700ms ease-in 500ms forwards;
+  }
+}
+
+/* The Modal (background) */
+.product-details-modal-b0x {
+  width: 1000px;
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  border-radius: 3px;
+  background-color: white;
+  border: solid 1px #022d71;
+  @include BoxShadow(6);
+  overflow: hidden;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Center the image and position the close button */
+  .imgcontainer {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  img.avatar {
+    border-radius: 50%;
+    @include BoxShadow(6);
+  }
+
+  .login-button {
+    width: 300px;
+    font-family: system-ui;
+    font-size: 20px;
+  }
+
+  .label {
+    position: relative;
+    left: -110px;
+    top: 20px;
+    font-family: system-ui;
+    font-weight: 100;
+    color: grey;
+  }
+
+  /* Full-width input fields */
+  input[type="text"],
+  input[type="password"] {
+    width: 300px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: #21346e;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+}
+
+.dark-mode {
+  $black-dark: #1d1d1d;
+  $black-dark-transparent: #181818de;
+  $white-dark: #fafafa;
+  background-color: linear-gradient(
+    to right,
+    $black-dark,
+    $black-dark-transparent
+  );
+
+  .desktop {
+    background: black;
+  }
+
+  body {
+    overflow: hidden; /* Hide scrollbars */
+  }
+
+  .tool-bar {
+    z-index: 99999999999;
+    background: linear-gradient(to right, $black-dark, $black-dark-transparent);
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    @include BoxShadow(4);
+
+    .logo {
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 0px;
+      animation: backInDown 1500ms ease-in 500ms forwards;
+
+      .icon-buton {
+        display: none;
+      }
+
+      .infinity-sales-group {
+        color: #1b1b1b;
+        font-weight: bold;
+        @include text-shadow(2px, 2px, 2px, var(--brand-orange));
+      }
+      .revenue-app {
+        color: #ffffff;
+        text-align: center;
+        position: relative;
+        top: -10px;
+      }
+    }
+
+    h1 {
+      // background: linear-gradient(to right,#f30ac18f, var(--brand-orange));
+      padding: 0px 5px;
+      border-radius: 10px;
+      padding-top: 15px;
+      font-size: 50px;
+      @include text-shadow(2px, 2px, 2px, #0aa9f38f);
+      animation: rubberBand 700ms ease-in 500ms forwards;
+    }
+  }
+
+  /* The Modal (background) */
+  .ces {
+    width: 1000px;
+    margin: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -53%);
+    border-radius: 3px;
+    background-color: black;
+    border: solid 1px #ffffff;
+    color: white;
+    @include BoxShadow(6);
+    overflow: hidden;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Center the image and position the close button */
+    .imgcontainer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    img.avatar {
+      border-radius: 50%;
+      @include BoxShadow(6);
+    }
+
+    .login-button {
+      width: 300px;
+      font-family: system-ui;
+      font-size: 20px;
+    }
+
+    .label {
+      position: relative;
+      left: -110px;
+      top: 20px;
+      font-family: system-ui;
+      font-weight: 100;
+      color: grey;
+    }
+
+    /* Full-width input fields */
+    input[type="text"],
+    input[type="password"] {
+      width: 300px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #21346e;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<!-- <div class="dark-mode" style=""> -->
+<div >
+  <!--👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧 TOOLBAR 👨🏽‍🔧 👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧-->
+  <div class="tool-bar">
+    <div class="logo">
+      <div>
+        <h1 class="infinity-sales-group" style="font-size: 2vw;">INFINITY SALES GROUP</h1>
+        <p class="revenue-app" style="font-size: 0.9vw;font-family: sans-serif;">Revenue App</p>
+      </div>
+    </div>
+    <div>
+      <button  matTooltip="log out" matTooltipPosition="below" class="icon-buton" style="background-color: #ffffff;position: fixed;right: 30px;top: 16px;"
+        (click)="signOut()" mat-mini-fab>
+        <mat-icon style="height: 35px;width: 35px;">
+          logout
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <!--👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧 TOOLBAR END 👨🏽‍🔧 👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧👨🏽‍🔧-->
+
+  <br>
+  <br>
+  <br>
+  <div style="margin-top: 30px;">
+    <app-table [bmxItem]="revenue_Data" [PARTNERS]="PARTNERS" [currentPage]="currentPage" [drag]="dragRows"
+      (changePageEmitter)="changePage($event)" (changePageRowsEmitter)="changePageRows($event)"
+      (getCatalogByProviderEmitter)="getCatalogByProvider($event)"
+      (openProductDialogEmitter)="openProductDialog($event)" (searchKeyword)="searchKeyword($event)"
+       (togglePageItemsAmountEmitter)="togglePageItemsAmount()">
+    </app-table>
+  </div>
+
+  <br>
+
+</div>
